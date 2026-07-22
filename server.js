@@ -9,7 +9,7 @@ app.use(express.json());
 
 let db = null;
 try {
-  const serviceAccount = JSON.parse(process.env.FIREBASE_KEY);
+  const serviceAccount = require('/etc/secrets/serviceAccountKey.json');
   admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
   db = admin.firestore();
 } catch(e) { console.error('Firebase error:', e.message); }
